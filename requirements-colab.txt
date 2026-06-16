@@ -1,0 +1,16 @@
+torch
+transformers
+accelerate
+bitsandbytes
+datasets
+peft
+trl
+unsloth
+sentence-transformers
+faiss-cpu
+pandas
+numpy
+pyyaml
+tqdm
+matplotlib
+scikit-learn

@@ -1,0 +1,18 @@
+models_config: "configs/models.yaml"
+generation:
+  temperature: 0.8
+  top_p: 0.9
+  max_new_tokens: 96
+  repetition_penalty: 1.08
+  retries: 2
+  load_in_4bit: true
+  overwrite: false
+validation:
+  max_words: 45
+  banned_prefixes:
+    - "sure"
+    - "here is a joke"
+    - "here's a joke"
+    - "joke:"
+    - "answer:"
+    - "explanation:"
