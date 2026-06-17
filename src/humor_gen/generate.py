@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import logging
-from typing import Any
+from typing import Any, Protocol
 
 try:
     from tqdm import tqdm
@@ -11,11 +11,15 @@ except ImportError:  # pragma: no cover - convenience fallback for bare local mo
 
 from humor_gen.data import build_prompt_input, load_dataset
 from humor_gen.models import get_runner
-from humor_gen.rag import RetrieverProtocol
 from humor_gen.utils import output_input_text, require_gpu_for_real_run, require_hf_token, resolve_model_config
 from humor_gen.validate import validate_joke
 
 LOGGER = logging.getLogger(__name__)
+
+
+class RetrieverProtocol(Protocol):
+    def retrieve(self, query: str, k: int) -> list[str]:
+        ...
 
 
 def generate_dataset(
