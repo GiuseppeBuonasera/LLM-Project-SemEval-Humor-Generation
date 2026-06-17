@@ -15,14 +15,13 @@ class MockGenerator:
         self.model_key = model_key
 
     def generate_joke(self, item: dict[str, str], contexts: list[str] | None = None) -> str:
-        suffix = self.model_key.replace("_", " ")
         if item["input_type"] == "word_pair":
             return (
                 f"My {item['word1']} hired a {item['word2']} as a life coach; "
-                f"now every crisis comes with garnish and confidence from {suffix}."
+                "now every crisis comes with garnish and confidence."
             )
         keyword = _headline_keyword(item["headline"])
-        return f"{item['headline']} sounds serious until the {keyword} department hires a punchline consultant from {suffix}."
+        return f"{item['headline']} sounds serious until the {keyword} department hires a punchline consultant."
 
     def judge(self, item: dict[str, str], joke_a: str, joke_b: str) -> dict[str, Any]:
         score_a = _mock_score(item, joke_a)
