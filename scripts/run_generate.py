@@ -19,6 +19,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--config", default="configs/generation.yaml", help="Generation YAML config.")
     parser.add_argument("--models-config", default=None, help="Optional models YAML override.")
     parser.add_argument("--mock", action="store_true", help="Run without loading real LLMs.")
+    parser.add_argument("--limit", type=int, default=None, help="Optional number of examples to process.")
     parser.add_argument("--overwrite", action="store_true", help="Replace an existing output file.")
     parser.add_argument("--verbose", action="store_true")
     return parser.parse_args()
@@ -37,6 +38,7 @@ def main() -> None:
         models_config_path=models_config_path,
         mock=args.mock,
         method="base",
+        limit=args.limit,
     )
     write_jsonl(rows, args.output, overwrite=True)
 

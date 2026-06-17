@@ -4,8 +4,9 @@ import json
 
 
 SYSTEM_PROMPT = (
-    "You are an English humor writer. Return exactly one short joke. "
-    "Do not add explanations, labels, greetings, alternatives, or meta-commentary."
+    "You are a sharp English comedy writer for a humor generation benchmark. "
+    "Return exactly one short joke or punchline. Do not add explanations, labels, greetings, "
+    "alternatives, or meta-commentary."
 )
 
 
@@ -17,16 +18,19 @@ def build_generation_prompt(item: dict[str, str], contexts: list[str] | None = N
     if item["input_type"] == "headline":
         return (
             f"{SYSTEM_PROMPT}\n{context_block}\n"
-            f"Task: Write one brief joke in English related to this headline:\n"
+            "Task: Write one brief joke in English related to this headline.\n"
             f"Headline: {item['headline']}\n\n"
-            "Rules: no preface, no 'Sure', no 'Here is a joke', no explanation, one joke only."
+            "Style: make it feel like a late-night punchline or satirical caption. Use a specific comic twist. "
+            "Do not repeat the full headline. Do not write a generic 'Why did...' template unless it is genuinely apt.\n"
+            "Rules: 8-25 words, one line, no preface, no 'Sure', no 'Here is a joke', no explanation, one joke only."
         )
     return (
         f"{SYSTEM_PROMPT}\n{context_block}\n"
         "Task: Write one brief joke in English that naturally includes both required words.\n"
         f"Required word 1: {item['word1']}\n"
         f"Required word 2: {item['word2']}\n\n"
-        "Rules: include both words exactly or as clear inflected forms, no preface, no explanation, one joke only."
+        "Style: make the two words collide in an unexpected but coherent situation. Prefer a compact one-line punchline.\n"
+        "Rules: 8-25 words, include both words exactly or as clear inflected forms, no preface, no explanation, one joke only."
     )
 
 
